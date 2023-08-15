@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.all(12.0),
               child: TextField(
                 decoration: InputDecoration(
-                  border: UnderlineInputBorder(),
+                  border: OutlineInputBorder(),
                   labelText: 'Usuário',
                 ),
               ),
