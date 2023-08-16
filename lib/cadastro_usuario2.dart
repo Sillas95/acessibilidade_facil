@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
 
-final dropvalue = ValueNotifier('');
-final dropopcoe = ['Feminino', 'Masculino', 'Outro'];
-String valornome = '';
-
 class CadastroUsuario2 extends StatefulWidget {
   const CadastroUsuario2({super.key});
 
@@ -13,12 +9,24 @@ class CadastroUsuario2 extends StatefulWidget {
   State<CadastroUsuario2> createState() => _CadastroUsuario2State();
 }
 
-enum SingingCharacter { usuario, gerente, asd }
+enum SingingCharacter { usuario, gerente }
 
 class _CadastroUsuario2State extends State<CadastroUsuario2> {
+  final TextEditingController sexoController = TextEditingController();
+  SelectSexo? selectSexo;
+
   SingingCharacter? tipo = SingingCharacter.usuario;
   @override
   Widget build(BuildContext context) {
+    final List<DropdownMenuEntry<SelectSexo>> sexoEntries =
+        <DropdownMenuEntry<SelectSexo>>[];
+    for (final SelectSexo sexo in SelectSexo.values) {
+      sexoEntries.add(
+        DropdownMenuEntry<SelectSexo>(
+            value: sexo, label: sexo.sexos, enabled: sexo.sexos != ''),
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Cadastro'),
@@ -44,16 +52,19 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                     width: 12,
                     height: 4,
                   ),
-                  const Text(
-                      style: TextStyle(fontSize: 17, color: Colors.black54),
-                      'Sexo:'),
-                  const SizedBox(
-                    width: 10,
+                  DropdownMenu<SelectSexo>(
+                    //initialSelection: SelectSexo.masculino,
+                    textStyle: const TextStyle(fontSize: 15),
+                    controller: sexoController,
+                    label: const Text('Sexo'),
+                    dropdownMenuEntries: sexoEntries,
+                    onSelected: (SelectSexo? sexos) {
+                      setState(() {
+                        selectSexo = sexos;
+                      });
+                    },
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ValueListenableBuilder<String>(
+                  /*ValueListenableBuilder<String>(
                       valueListenable: dropvalue,
                       builder: (BuildContext context, String value, _) {
                         return DropdownButton(
@@ -66,7 +77,7 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                               .toList(),
                           //borderRadius: BorderRadius.circular(200),
                         );
-                      }),
+                      }),*/
                   const SizedBox(
                     width: 60,
                   ),
@@ -108,6 +119,16 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                     border: OutlineInputBorder(),
                     labelText: 'E-mail',
                   ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Senha',
+                  ),
+                  inputFormatters: [],
                 ),
               ),
               const SizedBox(
@@ -160,7 +181,16 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                 ),
                 child: const Text('Enviar'),
                 onPressed: () {},
-              )
+              ),
+              const SizedBox(width: 20),
             ])));
   }
+}
+
+enum SelectSexo {
+  masculino('Masculino'),
+  feminino('Feminino');
+
+  const SelectSexo(this.sexos);
+  final String sexos;
 }

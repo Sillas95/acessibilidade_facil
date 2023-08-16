@@ -82,7 +82,7 @@ class _PerfilGerenteState extends State<PerfilGerente> {
                   IconButton(
                     color: Colors.black,
                     iconSize: 80,
-                    icon: const Icon(Icons.domain),
+                    icon: const Icon(Icons.add_circle_outline),
                     onPressed: () {},
                   ),
                   const SizedBox(
@@ -91,7 +91,7 @@ class _PerfilGerenteState extends State<PerfilGerente> {
                   IconButton(
                     color: Colors.black,
                     iconSize: 80,
-                    icon: const Icon(Icons.star_outlined),
+                    icon: const Icon(Icons.edit_location_alt_outlined),
                     onPressed: () {
                       /*Navigator.push(
                         context,
@@ -106,14 +106,14 @@ class _PerfilGerenteState extends State<PerfilGerente> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Visualizar\n estabelecimentos',
+                    'Cadastrar\n estabelecimento',
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
                     width: 80,
                   ),
                   Text(
-                    'Avaliar\n estabelecimentos',
+                    'Editar\n estabelecimento',
                     textAlign: TextAlign.center,
                   ),
                 ],
