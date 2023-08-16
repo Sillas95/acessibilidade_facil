@@ -1,4 +1,4 @@
-import 'package:acessibilidade_facil/perfilGerente.dart';
+import 'package:acessibilidade_facil/perfil_gerente.dart';
 import 'package:acessibilidade_facil/cadastro_usuario2.dart';
 import 'package:acessibilidade_facil/perfil.dart';
 import 'package:flutter/material.dart';
