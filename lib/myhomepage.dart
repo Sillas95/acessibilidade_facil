@@ -168,20 +168,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text('Cadastre-se'),
               ),
             ]),
-            DropdownButton(
-              items: const [
-                DropdownMenuItem(
-                  child: Text('Masculino'),
-                  value: "Masculino",
-                ),
-                DropdownMenuItem(
-                  child: Text('Feminino'),
-                  value: "Feminino",
-                )
-              ],
-              value: _dropdownValue,
-              onChanged: dropdownCallBack,
-            ),
           ],
         ),
       ),
