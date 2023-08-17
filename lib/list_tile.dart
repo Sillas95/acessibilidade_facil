@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class listTile extends StatefulWidget {
-  const listTile({super.key});
+class ListTile extends StatefulWidget {
+  const ListTile({super.key});
 
   @override
-  State<listTile> createState() => _MyWidgetState();
+  State<ListTile> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<listTile> {
+class _MyWidgetState extends State<ListTile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
