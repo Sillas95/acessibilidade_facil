@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mysql1/mysql1.dart';
 
 class TestConnectionScreen extends StatefulWidget {
+  const TestConnectionScreen({super.key});
+
   @override
   _TestConnectionScreenState createState() => _TestConnectionScreenState();
 }
@@ -14,7 +16,7 @@ class _TestConnectionScreenState extends State<TestConnectionScreen> {
       host: '10.0.2.2',
       port: 3306,
       user: 'root',
-      password: '',
+      password: '1234',
       db: 'app',
     );
 
