@@ -1,3 +1,4 @@
+import 'package:acessibilidade_facil/mysql.dart';
 import 'package:flutter/material.dart';
 
 class Perfil extends StatefulWidget {
@@ -96,11 +97,11 @@ class _PerfilState extends State<Perfil> {
                     iconSize: 80,
                     icon: const Icon(Icons.star_outlined),
                     onPressed: () {
-                      /*Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const RadioExampleApp()),
-                      );*/
+                            builder: (context) => TestConnectionScreen()),
+                      );
                     },
                   ),
                 ],

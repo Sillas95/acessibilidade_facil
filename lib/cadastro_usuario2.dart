@@ -64,20 +64,6 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                       });
                     },
                   ),
-                  /*ValueListenableBuilder<String>(
-                      valueListenable: dropvalue,
-                      builder: (BuildContext context, String value, _) {
-                        return DropdownButton(
-                          value: (value.isEmpty) ? null : value,
-                          onChanged: (escolha) =>
-                              dropvalue.value = escolha.toString(),
-                          items: dropopcoe
-                              .map((op) =>
-                                  DropdownMenuItem(value: op, child: Text(op)))
-                              .toList(),
-                          //borderRadius: BorderRadius.circular(200),
-                        );
-                      }),*/
                   const SizedBox(
                     width: 60,
                   ),
