@@ -1,5 +1,5 @@
+import 'avaliacao.dart';
 import 'package:flutter/material.dart';
-import 'package:acessibilidade_facil/123.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -11,7 +11,21 @@ class Perfil extends StatefulWidget {
 enum SingingCharacter { usuario, gerente }
 
 class _PerfilState extends State<Perfil> {
-  final email = const Text(
+  var email = '';
+
+  /*void _getCustomer() {
+    db.getConnection().then((conn) {
+      String sql = 'select email from app.usuario where id = 1;';
+      conn.query(sql).then((results) {
+        for (var row in results) {
+          setState(() {
+            email = row[0];
+          });
+        }
+      });
+    });
+  }*/
+  final mail = const Text(
     'sillas123silva@gmail.com',
     style: TextStyle(fontSize: 25),
   );
@@ -69,7 +83,7 @@ class _PerfilState extends State<Perfil> {
               const SizedBox(
                 height: 5,
               ),
-              email,
+              mail,
               const SizedBox(
                 height: 5,
               ),
@@ -84,6 +98,8 @@ class _PerfilState extends State<Perfil> {
               const SizedBox(
                 height: 30,
               ),
+              //const Text('email:'),
+              // Text(email),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -91,7 +107,9 @@ class _PerfilState extends State<Perfil> {
                     color: Colors.black,
                     iconSize: 80,
                     icon: const Icon(Icons.domain),
-                    onPressed: () {},
+                    onPressed: () {
+                      // _getCustomer();
+                    },
                   ),
                   const SizedBox(
                     width: 100,
@@ -104,7 +122,7 @@ class _PerfilState extends State<Perfil> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TestConnectionScreen()),
+                            builder: (context) => const Avaliacao()),
                       );
                     },
                   ),

@@ -1,3 +1,4 @@
+import 'package:acessibilidade_facil/myhomepage.dart';
 import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
@@ -158,15 +159,64 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
               const SizedBox(
                 height: 10,
               ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.all(16.0),
-                  textStyle: const TextStyle(fontSize: 20),
-                ),
-                child: const Text('Enviar'),
-                onPressed: () {},
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 26.0, vertical: 16.0),
+                      textStyle: const TextStyle(fontSize: 20),
+                    ),
+                    child: const Text('Enviar'),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              //title: const Text('CADASTRO'),
+                              content: const Text('Cadastro feito com Sucesso'),
+                              actions: <Widget>[
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MyHomePage(
+                                                title: 'Acessibilidade Fácil',
+                                              )),
+                                    );
+                                  },
+                                  child: const Text('Continuar'),
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                  ),
+                  const SizedBox(
+                    width: 60,
+                  ),
+                  ElevatedButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 15.0),
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      child: const Text('Voltar'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      }),
+                ],
               ),
               const SizedBox(width: 20),
             ])));

@@ -3,14 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class Listtile extends StatefulWidget {
-  const Listtile({super.key});
+class Avaliacao extends StatefulWidget {
+  const Avaliacao({super.key});
 
   @override
-  State<Listtile> createState() => _MyWidgetState();
+  State<Avaliacao> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<Listtile> {
+class _MyWidgetState extends State<Avaliacao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +47,9 @@ class _MyWidgetState extends State<Listtile> {
                     maxLines: 8,
                   ),
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
                 RatingBar.builder(
                   initialRating: 3,
                   minRating: 1,
@@ -62,6 +65,9 @@ class _MyWidgetState extends State<Listtile> {
                     Text('$rating');
                   },
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
                 TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.green,
@@ -70,7 +76,7 @@ class _MyWidgetState extends State<Listtile> {
                     textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {},
-                  child: const Text('Entrar'),
+                  child: const Text('Enviar'),
                 ),
               ]),
         ));

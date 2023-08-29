@@ -1,4 +1,4 @@
-import 'package:acessibilidade_facil/list_tile.dart';
+import 'package:acessibilidade_facil/cadastro_estabelecimento.dart';
 import 'package:flutter/material.dart';
 
 class PerfilGerente extends StatefulWidget {
@@ -84,7 +84,14 @@ class _PerfilGerenteState extends State<PerfilGerente> {
                     color: Colors.black,
                     iconSize: 80,
                     icon: const Icon(Icons.add_circle_outline),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const CadastroEstabelecimento()),
+                      );
+                    },
                   ),
                   const SizedBox(
                     width: 100,
@@ -94,11 +101,11 @@ class _PerfilGerenteState extends State<PerfilGerente> {
                     iconSize: 80,
                     icon: const Icon(Icons.edit_location_alt_outlined),
                     onPressed: () {
-                      Navigator.push(
+                      /*Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const Listtile()),
-                      );
+                      );*/
                     },
                   ),
                 ],
