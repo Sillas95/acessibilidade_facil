@@ -1,4 +1,4 @@
-import 'package:acessibilidade_facil/cadastro_estabelecimento.dart';
+import 'cadastro_estabelecimento.dart';
 import 'package:flutter/material.dart';
 
 class PerfilGerente extends StatefulWidget {

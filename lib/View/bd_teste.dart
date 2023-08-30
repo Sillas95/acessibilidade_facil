@@ -33,6 +33,7 @@ class _TestConnectionScreenState extends State<TestConnectionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    testConnection();
     return Scaffold(
       appBar: AppBar(
         title: const Text('MySQL Connection Test'),
@@ -51,10 +52,6 @@ class _TestConnectionScreenState extends State<TestConnectionScreen> {
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: testConnection,
-              child: const Text('Test Connection'),
-            ),
           ],
         ),
       ),

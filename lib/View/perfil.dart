@@ -1,5 +1,6 @@
 import 'avaliacao.dart';
 import 'package:flutter/material.dart';
+import 'conexao_bd.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -12,19 +13,8 @@ enum SingingCharacter { usuario, gerente }
 
 class _PerfilState extends State<Perfil> {
   var email = '';
+  var db = Conexao();
 
-  /*void _getCustomer() {
-    db.getConnection().then((conn) {
-      String sql = 'select email from app.usuario where id = 1;';
-      conn.query(sql).then((results) {
-        for (var row in results) {
-          setState(() {
-            email = row[0];
-          });
-        }
-      });
-    });
-  }*/
   final mail = const Text(
     'sillas123silva@gmail.com',
     style: TextStyle(fontSize: 25),

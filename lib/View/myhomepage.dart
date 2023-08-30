@@ -1,6 +1,6 @@
-import 'package:acessibilidade_facil/perfil_gerente.dart';
-import 'package:acessibilidade_facil/cadastro_usuario2.dart';
-import 'package:acessibilidade_facil/perfil.dart';
+import 'perfil_gerente.dart';
+import 'cadastro_usuario2.dart';
+import 'perfil.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
