@@ -1,6 +1,5 @@
 import 'avaliacao.dart';
 import 'package:flutter/material.dart';
-import 'conexao_bd.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -13,7 +12,6 @@ enum SingingCharacter { usuario, gerente }
 
 class _PerfilState extends State<Perfil> {
   var email = '';
-  var db = Conexao();
 
   final mail = const Text(
     'sillas123silva@gmail.com',
@@ -21,7 +19,7 @@ class _PerfilState extends State<Perfil> {
   );
   final foto = const CircleAvatar(
     backgroundImage: NetworkImage(
-        'https://scontent.fplu19-1.fna.fbcdn.net/v/t1.6435-9/49806306_10218100905303583_3187912206708637696_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=MDS4bimSAMkAX-Aut6I&_nc_ht=scontent.fplu19-1.fna&oh=00_AfDOWXTG8Q9kyFt50stFq6vtaaQroyadTd3K7Zt3jg6zdQ&oe=64EFAC6D'),
+        'https://pps.whatsapp.net/v/t61.24694-24/170013206_794371451198735_4887291915801925934_n.jpg?ccb=11-4&oh=01_AdRoN7Gc5xSRPToq8COIemggyhx7_MZEsBKdLJGlUcPMpg&oe=64FDF0B9&_nc_cat=110'),
     radius: 50,
   );
   final nome = const Text(

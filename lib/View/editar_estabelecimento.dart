@@ -5,15 +5,14 @@ import 'package:flutter/services.dart';
 //import 'package:email_validator/email_validator.dart';
 //enum SingingCharacter { usuario, gerente }
 
-class CadastroEstabelecimento extends StatefulWidget {
-  const CadastroEstabelecimento({super.key});
+class EditarEstabelecimento extends StatefulWidget {
+  const EditarEstabelecimento({super.key});
 
   @override
-  State<CadastroEstabelecimento> createState() =>
-      _CadastroEstabelecimentoState();
+  State<EditarEstabelecimento> createState() => _EditarEstabelecimentoState();
 }
 
-class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
+class _EditarEstabelecimentoState extends State<EditarEstabelecimento> {
   final TextEditingController tipoController = TextEditingController();
   SelectTipo? selectTipo;
 
@@ -30,7 +29,7 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Cadastro Estabelecimento'),
+          title: const Text('Editar Estabelecimento'),
         ),
         body: Center(
           child: Column(
@@ -98,38 +97,32 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 120,
-                      height: 55,
-                      child: ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.green,
-                          foregroundColor: Colors.white,
-                          fixedSize: const Size(120.0, 55.0),
-                          textStyle: const TextStyle(fontSize: 20),
-                        ),
-                        child: const Text('Enviar'),
-                        onPressed: () {},
+                    ElevatedButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 26.0, vertical: 16.0),
+                        textStyle: const TextStyle(fontSize: 20),
                       ),
+                      child: const Text('Enviar'),
+                      onPressed: () {},
                     ),
                     const SizedBox(
                       width: 60,
                     ),
-                    SizedBox(
-                      width: 120,
-                      height: 55,
-                      child: ElevatedButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.green,
-                            foregroundColor: Colors.white,
-                            fixedSize: const Size(120.0, 55.0),
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          child: const Text('Cancelar'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          }),
-                    ),
+                    ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 15.0),
+                          textStyle: const TextStyle(fontSize: 20),
+                        ),
+                        child: const Text('Cancelar'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
                   ],
                 ),
               ]),

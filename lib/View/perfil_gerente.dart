@@ -1,5 +1,6 @@
 import 'cadastro_estabelecimento.dart';
 import 'package:flutter/material.dart';
+import 'list_tile.dart';
 
 class PerfilGerente extends StatefulWidget {
   const PerfilGerente({super.key});
@@ -11,7 +12,7 @@ class PerfilGerente extends StatefulWidget {
 class _PerfilGerenteState extends State<PerfilGerente> {
   final foto = const CircleAvatar(
     backgroundImage: NetworkImage(
-        'https://scontent.fplu19-1.fna.fbcdn.net/v/t1.6435-9/49806306_10218100905303583_3187912206708637696_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=MDS4bimSAMkAX-Aut6I&_nc_ht=scontent.fplu19-1.fna&oh=00_AfDOWXTG8Q9kyFt50stFq6vtaaQroyadTd3K7Zt3jg6zdQ&oe=64EFAC6D'),
+        'https://scontent.fplu19-1.fna.fbcdn.net/v/t1.6435-9/49806306_10218100905303583_3187912206708637696_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=wYIx7EiAQ0IAX-CF27w&_nc_ht=scontent.fplu19-1.fna&oh=00_AfBdUPwDA2iM5fgVVTXM5uc8eD57FDY84bWG64_B9iem2w&oe=6517396D'),
     radius: 50,
   );
   final nome = const Text(
@@ -101,11 +102,11 @@ class _PerfilGerenteState extends State<PerfilGerente> {
                     iconSize: 80,
                     icon: const Icon(Icons.edit_location_alt_outlined),
                     onPressed: () {
-                      /*Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Listtile()),
-                      );*/
+                            builder: (context) => const ListTileApp()),
+                      );
                     },
                   ),
                 ],

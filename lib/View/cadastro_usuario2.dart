@@ -167,7 +167,7 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                       backgroundColor: Colors.green,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 26.0, vertical: 16.0),
+                          horizontal: 30.0, vertical: 15.0),
                       textStyle: const TextStyle(fontSize: 20),
                     ),
                     child: const Text('Enviar'),
@@ -209,7 +209,7 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                         backgroundColor: Colors.green,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 15.0),
+                            horizontal: 32.0, vertical: 15.0),
                         textStyle: const TextStyle(fontSize: 20),
                       ),
                       child: const Text('Voltar'),

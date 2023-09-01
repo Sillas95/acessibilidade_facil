@@ -72,7 +72,7 @@ class _MyWidgetState extends State<Avaliacao> {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
                     textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {},

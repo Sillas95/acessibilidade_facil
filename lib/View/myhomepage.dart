@@ -1,4 +1,4 @@
-import 'perfil_gerente.dart';
+import 'package:acessibilidade_facil/view/perfil_gerente.dart';
 import 'cadastro_usuario2.dart';
 import 'perfil.dart';
 import 'package:flutter/material.dart';
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextButton.styleFrom(
                 backgroundColor: Colors.green,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
