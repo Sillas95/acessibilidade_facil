@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
+//import 'package:mysql1/mysql1.dart';
 
 //import 'package:email_validator/email_validator.dart';
 //enum SingingCharacter { usuario, gerente }

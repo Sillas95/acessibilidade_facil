@@ -5,7 +5,7 @@ class TestConnectionScreen extends StatefulWidget {
   const TestConnectionScreen({super.key});
 
   @override
-  _TestConnectionScreenState createState() => _TestConnectionScreenState();
+  State<TestConnectionScreen> createState() => _TestConnectionScreenState();
 }
 
 class _TestConnectionScreenState extends State<TestConnectionScreen> {
