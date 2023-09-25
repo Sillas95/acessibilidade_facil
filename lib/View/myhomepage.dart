@@ -1,9 +1,10 @@
-import 'package:acessibilidade_facil/view/bd_teste.dart';
 //import 'package:acessibilidade_facil/view/perfil.dart';
 import 'package:acessibilidade_facil/view/perfil_gerente.dart';
 import 'cadastro_usuario2.dart';
 //import 'perfil.dart';
 import 'package:flutter/material.dart';
+
+import 'perfil.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -139,8 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 if (tipo == SingingCharacter.usuario) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const TestConnectionScreen()),
+                    MaterialPageRoute(builder: (context) => const Perfil()),
                   );
                 } else if (tipo == SingingCharacter.gerente) {
                   Navigator.push(
