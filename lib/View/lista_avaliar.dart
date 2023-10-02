@@ -1,16 +1,17 @@
+import 'package:acessibilidade_facil/view/avaliacao.dart';
 import 'package:acessibilidade_facil/view/editar_estabelecimento.dart';
 import 'package:flutter/material.dart';
 
 /// Flutter code sample for [ListTile].
 
-class ListTileApp extends StatefulWidget {
-  const ListTileApp({super.key});
+class ListTileApp3 extends StatefulWidget {
+  const ListTileApp3({super.key});
 
   @override
-  State<ListTileApp> createState() => _ListTileAppState();
+  State<ListTileApp3> createState() => _ListTileApp3State();
 }
 
-class _ListTileAppState extends State<ListTileApp> {
+class _ListTileApp3State extends State<ListTileApp3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +20,8 @@ class _ListTileAppState extends State<ListTileApp> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Selecione o estabelecimento para Editar',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            'Selecione o estabelecimento para Avaliar',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 20,
@@ -53,8 +54,7 @@ class _ListTileAppState extends State<ListTileApp> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const EditarEstabelecimento()),
+                                  builder: (context) => const Avaliacao()),
                             );
                           },
                         ),
@@ -81,14 +81,7 @@ class _ListTileAppState extends State<ListTileApp> {
                           ),
                           subtitle: const Text('Rua São Paulo, 120, Sidil'),
                           isThreeLine: true,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const EditarEstabelecimento()),
-                            );
-                          },
+                          onTap: () {},
                         ),
                       ),
                     ),
@@ -116,14 +109,7 @@ class _ListTileAppState extends State<ListTileApp> {
                           ),
                           subtitle: const Text('Rua São Paulo, 120, Sidil'),
                           isThreeLine: true,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const EditarEstabelecimento()),
-                            );
-                          },
+                          onTap: () {},
                         ),
                       ),
                     ),

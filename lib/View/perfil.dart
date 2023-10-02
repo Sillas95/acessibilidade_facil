@@ -1,4 +1,6 @@
-import 'avaliacao.dart';
+import 'package:acessibilidade_facil/view/lista_avaliar.dart';
+import 'package:acessibilidade_facil/view/lista_visualizar.dart';
+
 import 'package:flutter/material.dart';
 
 class Perfil extends StatefulWidget {
@@ -18,9 +20,8 @@ class _PerfilState extends State<Perfil> {
     style: TextStyle(fontSize: 25),
   );
   final foto = const CircleAvatar(
-    backgroundImage: NetworkImage(
-        'https://pps.whatsapp.net/v/t61.24694-24/170013206_794371451198735_4887291915801925934_n.jpg?ccb=11-4&oh=01_AdRoN7Gc5xSRPToq8COIemggyhx7_MZEsBKdLJGlUcPMpg&oe=64FDF0B9&_nc_cat=110'),
-    radius: 50,
+    backgroundImage: AssetImage("images/123.jpg"),
+    radius: 80,
   );
   final nome = const Text(
     'Sillas Francisco da Silva',
@@ -96,7 +97,11 @@ class _PerfilState extends State<Perfil> {
                     iconSize: 80,
                     icon: const Icon(Icons.domain),
                     onPressed: () {
-                      // _getCustomer();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ListTileApp2()),
+                      ); // _getCustomer();L
                     },
                   ),
                   const SizedBox(
@@ -110,7 +115,7 @@ class _PerfilState extends State<Perfil> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Avaliacao()),
+                            builder: (context) => const ListTileApp3()),
                       );
                     },
                   ),

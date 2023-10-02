@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 155,
+                    width: 160,
                     child: ListTile(
                         title: const Text('Usuário'),
                         leading: Radio<SingingCharacter>(
@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         )),
                   ),
                   SizedBox(
-                    width: 155,
+                    width: 160,
                     child: ListTile(
                       title: const Text('Gerente'),
                       leading: Radio<SingingCharacter>(
