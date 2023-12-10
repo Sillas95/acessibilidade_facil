@@ -1,5 +1,8 @@
 //import 'package:acessibilidade_facil/view/perfil.dart';
-import 'package:acessibilidade_facil/view/perfil_gerente.dart';
+// ignore_for_file: prefer_const_constructors
+
+import 'package:acessibilidade_facil/View/perfil_gerente.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'cadastro_usuario2.dart';
 //import 'perfil.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +29,14 @@ class MyHomePage extends StatefulWidget {
 
 enum SingingCharacter { usuario, gerente }
 
+//Instância do Firebase
+FirebaseFirestore db = FirebaseFirestore.instance;
+
 class _MyHomePageState extends State<MyHomePage> {
+  //Criação das Controllers para cada dado do Usuário/Gerente
+  final TextEditingController cpfController = TextEditingController();
+  final TextEditingController senhaController = TextEditingController();
+
   SingingCharacter? tipo = SingingCharacter.usuario;
 
   @override
@@ -71,19 +81,21 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 20,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(12.0),
               child: TextField(
+                controller: cpfController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Usuário',
+                  labelText: 'CPF',
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(12.0),
               child: TextField(
+                controller: senhaController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Senha',
@@ -136,18 +148,38 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                 textStyle: const TextStyle(fontSize: 20),
               ),
-              onPressed: () {
-                if (tipo == SingingCharacter.usuario) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Perfil()),
-                  );
+              onPressed: () async {
+                String cpf = cpfController.text;
+                if (tipo == SingingCharacter.usuario && cpf.isNotEmpty) {
+                  db
+                      .collection('usuario')
+                      .doc(cpf)
+                      .get()
+                      .then((DocumentSnapshot doc) {
+                    final usuarioDb = doc.data() as Map<String, dynamic>;
+                    if (usuarioDb["senha"] == senhaController.text) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Perfil(id: cpf)),
+                      );
+                    }
+                  });
                 } else if (tipo == SingingCharacter.gerente) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PerfilGerente()),
-                  );
+                  db
+                      .collection('gerente')
+                      .doc(cpf)
+                      .get()
+                      .then((DocumentSnapshot doc) {
+                    final gerenteDb = doc.data() as Map<String, dynamic>;
+                    if (gerenteDb["senha"] == senhaController.text) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PerfilGerente(id: cpf)),
+                      );
+                    }
+                  });
                 }
               },
               child: const Text('Entrar'),
