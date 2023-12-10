@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
+
+import 'package:acessibilidade_facil/View/perfil_gerente.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
@@ -7,15 +11,26 @@ import 'package:flutter/services.dart';
 //enum SingingCharacter { usuario, gerente }
 
 class CadastroEstabelecimento extends StatefulWidget {
-  const CadastroEstabelecimento({super.key});
+  final String id;
+  CadastroEstabelecimento({
+    required this.id,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<CadastroEstabelecimento> createState() =>
       _CadastroEstabelecimentoState();
 }
 
+//Instância do Firebase
+FirebaseFirestore db = FirebaseFirestore.instance;
+
 class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController enderecoController = TextEditingController();
+  final TextEditingController cnpjController = TextEditingController();
   final TextEditingController tipoController = TextEditingController();
+  final TextEditingController descricaoController = TextEditingController();
   SelectTipo? selectTipo;
 
   @override
@@ -38,9 +53,10 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(12.0),
                   child: TextField(
+                    controller: nomeController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Nome do Estabelecimento',
@@ -48,9 +64,10 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                     inputFormatters: [],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(12.0),
                   child: TextField(
+                    controller: enderecoController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Endereço',
@@ -62,6 +79,7 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                   padding: const EdgeInsets.all(12.0),
                   child: TextFormField(
                     keyboardType: TextInputType.number,
+                    controller: cnpjController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'CNPJ',
@@ -84,9 +102,10 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                     });
                   },
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(12.0),
                   child: TextField(
+                    controller: descricaoController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         //hintText: 'Descrição',
@@ -110,7 +129,37 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                           textStyle: const TextStyle(fontSize: 20),
                         ),
                         child: const Text('Enviar'),
-                        onPressed: () {},
+                        onPressed: () {
+                          enviarDados();
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  //title: const Text('CADASTRO'),
+                                  content:
+                                      const Text('Cadastro feito com Sucesso'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .labelLarge),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PerfilGerente(
+                                                      id: widget.id
+                                                          .toString())),
+                                        );
+                                      },
+                                      child: const Text('Continuar'),
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -135,6 +184,24 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                 ),
               ]),
         ));
+  }
+
+  void enviarDados() {
+    String cnpj = cnpjController.text
+        .replaceAll('.', '')
+        .replaceAll('-', '')
+        .replaceAll('/', '');
+    if (cnpj.isNotEmpty) {
+      db.collection("estabelecimento").doc(cnpj).set({
+        "nome": nomeController.text.isEmpty ? "" : nomeController.text,
+        "endereco":
+            enderecoController.text.isEmpty ? "" : enderecoController.text,
+        "cnpj": cnpj,
+        "tipo": tipoController.value.text,
+        "descricao":
+            descricaoController.text.isEmpty ? "" : descricaoController.text,
+      });
+    }
   }
 }
 
