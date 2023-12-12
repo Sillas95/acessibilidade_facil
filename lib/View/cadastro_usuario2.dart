@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
 
-class CadastroUsuario2 extends StatefulWidget {
-  const CadastroUsuario2({super.key});
+class CadastroUsuario extends StatefulWidget {
+  const CadastroUsuario({super.key});
   @override
-  State<CadastroUsuario2> createState() => _CadastroUsuario2State();
+  State<CadastroUsuario> createState() => _CadastroUsuarioState();
 }
 
 enum SingingCharacter { usuario, gerente }
@@ -18,7 +18,7 @@ enum SingingCharacter { usuario, gerente }
 //Instância do Firebase
 FirebaseFirestore db = FirebaseFirestore.instance;
 
-class _CadastroUsuario2State extends State<CadastroUsuario2> {
+class _CadastroUsuarioState extends State<CadastroUsuario> {
   //Criação das Controllers para cada dado do Usuário/Gerente
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController sexoController = TextEditingController();
@@ -55,7 +55,6 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                 padding: EdgeInsets.all(12.0),
                 child: TextField(
                   controller: nomeController,
-                  // ignore: prefer_const_constructors
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Nome Completo',
@@ -197,7 +196,6 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              //title: const Text('CADASTRO'),
                               content: const Text('Cadastro feito com Sucesso'),
                               actions: <Widget>[
                                 TextButton(
@@ -248,25 +246,221 @@ class _CadastroUsuario2State extends State<CadastroUsuario2> {
     if (cpf.isNotEmpty) {
       if (tipo == SingingCharacter.gerente) {
         db.collection("gerente").doc(cpf).set({
-          "nome": nomeController.text.isEmpty ? "" : nomeController.text,
+          "nome": nomeController.text.isEmpty
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe o nome'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
+              : nomeController.text,
           "cpf": cpf,
           "data_nascimento": dataNascimentoController.text.isEmpty
-              ? ""
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe a dara de nasciomento'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
               : dataNascimentoController.text,
-          "email": emailController.text.isEmpty ? "" : emailController.text,
-          "sexo": sexoController.text.isEmpty ? "" : sexoController.text,
-          "senha": senhaController.text.isEmpty ? "" : senhaController.text,
+          "email": emailController.text.isEmpty
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe o email'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
+              : emailController.text,
+          "sexo": sexoController.text.isEmpty
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe o sexo'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
+              : sexoController.text,
+          "senha": senhaController.text.isEmpty
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe a senha'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
+              : senhaController.text,
         });
       } else {
         db.collection("usuario").doc(cpf).set({
-          "nome": nomeController.text.isEmpty ? "" : nomeController.text,
+          "nome": nomeController.text.isEmpty
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe o nome'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
+              : nomeController.text,
           "cpf": cpf,
           "data_nascimento": dataNascimentoController.text.isEmpty
-              ? ""
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe a data de Nascimento'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
               : dataNascimentoController.text,
-          "email": emailController.text.isEmpty ? "" : emailController.text,
-          "sexo": sexoController.text.isEmpty ? "" : sexoController.text,
-          "senha": senhaController.text.isEmpty ? "" : senhaController.text,
+          "email": emailController.text.isEmpty
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe o email'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
+              : emailController.text,
+          "sexo": sexoController.text.isEmpty
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe o sexo'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
+              : sexoController.text,
+          "senha": senhaController.text.isEmpty
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      //title: const Text('CADASTRO'),
+                      content: const Text('Informe a senha'),
+                      actions: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                              textStyle:
+                                  Theme.of(context).textTheme.labelLarge),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Continuar'),
+                        ),
+                      ],
+                    );
+                  })
+              : senhaController.text,
         });
       }
     }

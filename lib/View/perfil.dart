@@ -2,6 +2,7 @@
 
 import 'package:acessibilidade_facil/view/lista_avaliar.dart';
 import 'package:acessibilidade_facil/view/lista_visualizar.dart';
+import 'package:acessibilidade_facil/view/myhomepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -53,6 +54,7 @@ class _PerfilState extends State<Perfil> {
   @override
   Widget build(BuildContext contexto) {
     String cpf = widget.id.toString();
+
     return FutureBuilder(
       future: getData(cpf),
       builder: (context, AsyncSnapshot<DocumentSnapshot> usuarioDb) {
@@ -91,9 +93,28 @@ class _PerfilState extends State<Perfil> {
 
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Perfil'),
+              title: Text('Perfil'),
+              //leading: Icon(Icons.menu),
             ),
-            //drawer: const Drawer(),
+            drawer: Drawer(
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text("Sair"),
+                    leading: const Icon(Icons.exit_to_app_rounded),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyHomePage(
+                                  title: 'Acessibilidade Fácil',
+                                )),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
             body: Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -142,7 +163,7 @@ class _PerfilState extends State<Perfil> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ListTileApp2()),
+                                  builder: (context) => ListaEstabelecimento()),
                             ); // _getCustomer();L
                           },
                         ),

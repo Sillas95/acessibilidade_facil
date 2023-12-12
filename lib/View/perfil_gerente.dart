@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'cadastro_estabelecimento.dart';
 import 'package:flutter/material.dart';
 import 'lista_editar.dart';
+import 'myhomepage.dart';
 
 class PerfilGerente extends StatefulWidget {
   final String id;
@@ -87,6 +88,25 @@ class _PerfilGerenteState extends State<PerfilGerente> {
           return Scaffold(
             appBar: AppBar(
               title: const Text('Perfil'),
+            ),
+            drawer: Drawer(
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text("Sair"),
+                    leading: const Icon(Icons.exit_to_app_rounded),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyHomePage(
+                                  title: 'Acessibilidade Fácil',
+                                )),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
             //drawer: const Drawer(),
             body: Center(

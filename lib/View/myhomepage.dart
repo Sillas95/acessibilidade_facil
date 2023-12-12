@@ -163,6 +163,27 @@ class _MyHomePageState extends State<MyHomePage> {
                         MaterialPageRoute(
                             builder: (context) => Perfil(id: cpf)),
                       );
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              //title: const Text('CADASTRO'),
+                              content: const Text('Senha Incorreta'),
+                              actions: <Widget>[
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Voltar'),
+                                ),
+                              ],
+                            );
+                          });
                     }
                   });
                 } else if (tipo == SingingCharacter.gerente) {
@@ -178,6 +199,27 @@ class _MyHomePageState extends State<MyHomePage> {
                         MaterialPageRoute(
                             builder: (context) => PerfilGerente(id: cpf)),
                       );
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              //title: const Text('CADASTRO'),
+                              content: const Text('Senha Incorreta'),
+                              actions: <Widget>[
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Voltar'),
+                                ),
+                              ],
+                            );
+                          });
                     }
                   });
                 }
@@ -197,7 +239,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const CadastroUsuario2()),
+                        builder: (context) => const CadastroUsuario()),
                   );
                 },
                 child: const Text('Cadastre-se'),
