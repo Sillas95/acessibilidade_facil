@@ -3,7 +3,10 @@
 
 import 'package:acessibilidade_facil/View/perfil_gerente.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'cadastro_usuario2.dart';
+import 'package:flutter/services.dart';
+import 'cadastro_usuario.dart';
+import 'package:brasil_fields/brasil_fields.dart';
+
 //import 'perfil.dart';
 import 'package:flutter/material.dart';
 
@@ -83,12 +86,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               padding: EdgeInsets.all(12.0),
-              child: TextField(
+              child: TextFormField(
                 controller: cpfController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'CPF',
                 ),
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  CpfInputFormatter(),
+                ],
               ),
             ),
             const SizedBox(height: 10),
@@ -149,7 +156,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () async {
-                String cpf = cpfController.text;
+                String cpf =
+                    cpfController.text.replaceAll('.', '').replaceAll('-', '');
                 if (tipo == SingingCharacter.usuario && cpf.isNotEmpty) {
                   db
                       .collection('usuario')

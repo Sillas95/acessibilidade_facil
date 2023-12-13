@@ -130,35 +130,63 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                         ),
                         child: const Text('Enviar'),
                         onPressed: () {
-                          enviarDados();
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  //title: const Text('CADASTRO'),
-                                  content:
-                                      const Text('Cadastro feito com Sucesso'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      style: TextButton.styleFrom(
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .labelLarge),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PerfilGerente(
-                                                      id: widget.id
-                                                          .toString())),
-                                        );
-                                      },
-                                      child: const Text('Continuar'),
-                                    ),
-                                  ],
-                                );
-                              });
+                          if (nomeController.text.isNotEmpty &&
+                              cnpjController.text.isNotEmpty &&
+                              enderecoController.text.isNotEmpty &&
+                              tipoController.value.text.isNotEmpty &&
+                              descricaoController.text.isNotEmpty) {
+                            enviarDados();
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    //title: const Text('CADASTRO'),
+                                    content: const Text(
+                                        'Cadastro feito com Sucesso'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .labelLarge),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    PerfilGerente(
+                                                        id: widget.id
+                                                            .toString())),
+                                          );
+                                        },
+                                        child: const Text('Continuar'),
+                                      ),
+                                    ],
+                                  );
+                                });
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    //title: const Text('CADASTRO'),
+                                    content:
+                                        const Text('Informe todos os dados'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .labelLarge),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text('Continuar'),
+                                      ),
+                                    ],
+                                  );
+                                });
+                          }
                         },
                       ),
                     ),
@@ -193,88 +221,11 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
         .replaceAll('/', '');
     if (cnpj.isNotEmpty) {
       db.collection("estabelecimento").doc(cnpj).set({
-        "nome": nomeController.text.isEmpty
-            ? showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    //title: const Text('CADASTRO'),
-                    content: const Text('Informe o nome do estabelecimento'),
-                    actions: <Widget>[
-                      TextButton(
-                        style: TextButton.styleFrom(
-                            textStyle: Theme.of(context).textTheme.labelLarge),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Continuar'),
-                      ),
-                    ],
-                  );
-                })
-            : nomeController.text,
-        "endereco": enderecoController.text.isEmpty
-            ? showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    //title: const Text('CADASTRO'),
-                    content: const Text('Informe o Endereço'),
-                    actions: <Widget>[
-                      TextButton(
-                        style: TextButton.styleFrom(
-                            textStyle: Theme.of(context).textTheme.labelLarge),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Continuar'),
-                      ),
-                    ],
-                  );
-                })
-            : enderecoController.text,
+        "nome": nomeController.text,
+        "endereco": enderecoController.text,
         "cnpj": cnpj,
-        "tipo": tipoController.text.isEmpty
-            ? showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    //title: const Text('CADASTRO'),
-                    content: const Text('Informe o tipo'),
-                    actions: <Widget>[
-                      TextButton(
-                        style: TextButton.styleFrom(
-                            textStyle: Theme.of(context).textTheme.labelLarge),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Continuar'),
-                      ),
-                    ],
-                  );
-                })
-            : tipoController.text,
-        "descricao": descricaoController.text.isEmpty
-            ? showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    //title: const Text('CADASTRO'),
-                    content:
-                        const Text('Informe a descrição do estabelecimento'),
-                    actions: <Widget>[
-                      TextButton(
-                        style: TextButton.styleFrom(
-                            textStyle: Theme.of(context).textTheme.labelLarge),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Continuar'),
-                      ),
-                    ],
-                  );
-                })
-            : descricaoController.text,
+        "tipo": tipoController.text,
+        "descricao": descricaoController.text,
       });
     }
   }
