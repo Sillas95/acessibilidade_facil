@@ -197,7 +197,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                 children: [
                   ElevatedButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.deepOrange,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 15.0),
@@ -289,7 +289,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                   ),
                   ElevatedButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Colors.green,
+                        backgroundColor: Colors.deepOrange,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 32.0, vertical: 15.0),
@@ -338,17 +338,3 @@ enum SelectSexo {
   const SelectSexo(this.sexos);
   final String sexos;
 }
-
-/*Future<void> _selecionaData() async {
-  DateTime? _picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1990),
-      lastDate: DateTime(2050));
-
-  if (_picked != null) {
-    setState(() {
-      _dataNascimentoController.text = _picked.toString().split(" ")[0];
-    });
-  }
-}*/

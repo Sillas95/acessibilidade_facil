@@ -10,6 +10,8 @@ class Avaliacao extends StatefulWidget {
   State<Avaliacao> createState() => _MyWidgetState();
 }
 
+final TextEditingController ratingController = TextEditingController();
+
 class _MyWidgetState extends State<Avaliacao> {
   @override
   Widget build(BuildContext context) {
@@ -50,21 +52,30 @@ class _MyWidgetState extends State<Avaliacao> {
                 const SizedBox(
                   height: 15,
                 ),
-                RatingBar.builder(
+                RatingBar(
                   initialRating: 3,
-                  minRating: 0,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
                   itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
                   onRatingUpdate: (rating) {
-                    Text('$rating');
+                    print(rating);
                   },
+                  ratingWidget: RatingWidget(
+                      full: const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      half: const Icon(
+                        Icons.star_half,
+                        color: Colors.amber,
+                      ),
+                      empty: const Icon(
+                        Icons.star_border,
+                        color: Colors.amber,
+                      )),
                 ),
+                //Text(avaliacao),
                 const SizedBox(
                   height: 20,
                 ),

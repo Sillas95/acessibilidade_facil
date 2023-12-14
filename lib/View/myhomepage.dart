@@ -78,9 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: <Widget>[
-            const Text('LOGIN',
-                style: TextStyle(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.bold)),
+            Image.asset(
+              "images/1234.jpg",
+              height: 50,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -89,7 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextFormField(
                 controller: cpfController,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25)),
                   labelText: 'CPF',
                 ),
                 inputFormatters: [
@@ -104,7 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextField(
                 controller: senhaController,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25)),
                   labelText: 'Senha',
                 ),
                 obscureText: true,
@@ -150,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.deepOrange,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                 textStyle: const TextStyle(fontSize: 20),

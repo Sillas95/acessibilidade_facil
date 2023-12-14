@@ -124,7 +124,7 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                       height: 55,
                       child: ElevatedButton(
                         style: TextButton.styleFrom(
-                          backgroundColor: Colors.green,
+                          backgroundColor: Colors.deepOrange,
                           foregroundColor: Colors.white,
                           fixedSize: const Size(120.0, 55.0),
                           textStyle: const TextStyle(fontSize: 20),
