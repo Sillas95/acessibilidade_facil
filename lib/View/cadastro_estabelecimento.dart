@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
-import 'package:acessibilidade_facil/View/perfil_gerente.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
+
+import 'myhomepage.dart';
 //import 'package:mysql1/mysql1.dart';
 
 //import 'package:email_validator/email_validator.dart';
@@ -135,35 +136,59 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                               enderecoController.text.isNotEmpty &&
                               tipoController.value.text.isNotEmpty &&
                               descricaoController.text.isNotEmpty) {
-                            enviarDados();
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    //title: const Text('CADASTRO'),
-                                    content: const Text(
-                                        'Cadastro feito com Sucesso'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                            textStyle: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge),
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    PerfilGerente(
-                                                        id: widget.id
-                                                            .toString())),
-                                          );
-                                        },
-                                        child: const Text('Continuar'),
-                                      ),
-                                    ],
-                                  );
-                                });
+                            if (UtilBrasilFields.isCNPJValido(
+                                cnpjController.text)) {
+                              enviarDados();
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: const Text(
+                                          'Cadastro feito com Sucesso'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                              textStyle: Theme.of(context)
+                                                  .textTheme
+                                                  .labelLarge),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MyHomePage(
+                                                        title:
+                                                            'Acessibilidade Fácil',
+                                                      )),
+                                            );
+                                          },
+                                          child: const Text('Continuar'),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content:
+                                          const Text('Informe um CNPJ válido'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                              textStyle: Theme.of(context)
+                                                  .textTheme
+                                                  .labelLarge),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Continuar'),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            }
                           } else {
                             showDialog(
                                 context: context,

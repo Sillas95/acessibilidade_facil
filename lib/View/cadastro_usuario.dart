@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 import 'myhomepage.dart';
 import 'package:flutter/material.dart';
@@ -89,12 +89,26 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                       controller: dataNascimentoController,
                       keyboardType: TextInputType.datetime,
                       decoration: const InputDecoration(
+                        filled: true,
                         labelText: 'Data de Nascimento',
                         border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.calendar_today),
                       ),
+                      //readOnly: true,
+                      onTap: () async {
+                        DateTime? newDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1980),
+                            lastDate: DateTime(2050));
+
+                        if (newDate == null) return;
+                        setState(() => dataNascimentoController.text =
+                            DateFormat("dd/MM/yyyy").format(newDate));
+                      },
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
-                        DataInputFormatter()
+                        DataInputFormatter(),
                       ],
                     ),
                   ),
@@ -197,34 +211,56 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                           sexoController.value.text.isNotEmpty &&
                           emailController.text.isNotEmpty &&
                           senhaController.text.isNotEmpty) {
-                        enviarDados();
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                content:
-                                    const Text('Cadastro feito com Sucesso'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    style: TextButton.styleFrom(
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const MyHomePage(
-                                                  title: 'Acessibilidade Fácil',
-                                                )),
-                                      );
-                                    },
-                                    child: const Text('Continuar'),
-                                  ),
-                                ],
-                              );
-                            });
+                        if (UtilBrasilFields.isCPFValido(cpfController.text)) {
+                          enviarDados();
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content:
+                                      const Text('Cadastro feito com Sucesso'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .labelLarge),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => MyHomePage(
+                                                    title:
+                                                        'Acessibilidade Fácil',
+                                                  )),
+                                        );
+                                      },
+                                      child: const Text('Continuar'),
+                                    ),
+                                  ],
+                                );
+                              });
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: const Text('Informe um CPF válido'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .labelLarge),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('Continuar'),
+                                    ),
+                                  ],
+                                );
+                              });
+                        }
                       } else {
                         showDialog(
                             context: context,
@@ -271,7 +307,6 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
 
   void enviarDados() {
     String cpf = cpfController.text.replaceAll('.', '').replaceAll('-', '');
-
     if (cpf.isNotEmpty) {
       if (tipo == SingingCharacter.gerente) {
         db.collection("gerente").doc(cpf).set({
@@ -303,3 +338,17 @@ enum SelectSexo {
   const SelectSexo(this.sexos);
   final String sexos;
 }
+
+/*Future<void> _selecionaData() async {
+  DateTime? _picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1990),
+      lastDate: DateTime(2050));
+
+  if (_picked != null) {
+    setState(() {
+      _dataNascimentoController.text = _picked.toString().split(" ")[0];
+    });
+  }
+}*/
