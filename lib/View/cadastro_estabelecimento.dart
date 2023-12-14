@@ -136,38 +136,38 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                               enderecoController.text.isNotEmpty &&
                               tipoController.value.text.isNotEmpty &&
                               descricaoController.text.isNotEmpty) {
-                            if (UtilBrasilFields.isCNPJValido(
-                                cnpjController.text)) {
-                              enviarDados();
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      content: const Text(
-                                          'Cadastro feito com Sucesso'),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          style: TextButton.styleFrom(
-                                              textStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .labelLarge),
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      MyHomePage(
-                                                        title:
-                                                            'Acessibilidade Fácil',
-                                                      )),
-                                            );
-                                          },
-                                          child: const Text('Continuar'),
-                                        ),
-                                      ],
-                                    );
-                                  });
-                            } else {
+                            /*if (UtilBrasilFields.isCNPJValido(
+                                cnpjController.text)) {*/
+                            enviarDados();
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: const Text(
+                                        'Cadastro feito com Sucesso'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .labelLarge),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MyHomePage(
+                                                      title:
+                                                          'Acessibilidade Fácil',
+                                                    )),
+                                          );
+                                        },
+                                        child: const Text('Continuar'),
+                                      ),
+                                    ],
+                                  );
+                                });
+                            /*} else {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -188,7 +188,7 @@ class _CadastroEstabelecimentoState extends State<CadastroEstabelecimento> {
                                       ],
                                     );
                                   });
-                            }
+                            }*/
                           } else {
                             showDialog(
                                 context: context,

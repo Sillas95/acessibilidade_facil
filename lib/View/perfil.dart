@@ -61,7 +61,7 @@ class _PerfilState extends State<Perfil> {
         if (usuarioDb.connectionState == ConnectionState.done) {
           final mail = Text(
             'E-mail: ' + usuarioDb.data?.get("email"),
-            style: TextStyle(fontSize: 25),
+            style: TextStyle(fontSize: 18),
           );
           final foto = const CircleAvatar(
             backgroundImage: AssetImage("images/123.jpg"),
