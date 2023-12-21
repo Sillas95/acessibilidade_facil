@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Image.asset(
               "images/1234.jpg",
-              height: 50,
+              height: 100,
             ),
             const SizedBox(
               height: 20,
